@@ -20,26 +20,32 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"knot41.github.io.com","root":"/","images":"/images","scheme":"Gemini","darkmode":true,"version":"8.22.0","exturl":false,"sidebar":{"position":"left","width_expanded":300,"width_dual_column":220,"display":"always","padding":18,"offset":12},"hljswrap":true,"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":true,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
 
-    <meta name="description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub.">
+    <meta name="description" content="以Ubuntu系统为例，介绍如何利用GPU加速计算，以进行深度学习、本地运行大模型等高性能任务。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Hello World">
-<meta property="og:url" content="http://knot41.github.io.com/hello-world/index.html">
+<meta property="og:title" content="利用GPU加速计算">
+<meta property="og:url" content="http://knot41.github.io.com/Use_Gpu/index.html">
 <meta property="og:site_name" content="Cinjay&#39;s Blog">
-<meta property="og:description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub.">
+<meta property="og:description" content="以Ubuntu系统为例，介绍如何利用GPU加速计算，以进行深度学习、本地运行大模型等高性能任务。">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2024-01-01T16:00:00.000Z">
-<meta property="article:modified_time" content="2025-02-12T13:05:58.156Z">
+<meta property="og:image" content="http://knot41.github.io.com/images/Ubuntu/Additional_Drivers.png">
+<meta property="og:image" content="http://knot41.github.io.com/images/Ubuntu/nvidia-smi.png">
+<meta property="og:image" content="http://knot41.github.io.com/images/Ubuntu/CUDA_Toolkit.png">
+<meta property="og:image" content="http://knot41.github.io.com/images/Ubuntu/PyTorch.png">
+<meta property="og:image" content="http://knot41.github.io.com/images/Ubuntu/test.png">
+<meta property="article:published_time" content="2025-02-04T16:00:00.000Z">
+<meta property="article:modified_time" content="2025-02-13T03:42:33.497Z">
 <meta property="article:author" content="Cinjay">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://knot41.github.io.com/images/Ubuntu/Additional_Drivers.png">
 
 
-<link rel="canonical" href="http://knot41.github.io.com/hello-world/">
+<link rel="canonical" href="http://knot41.github.io.com/Use_Gpu/">
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://knot41.github.io.com/hello-world/","path":"hello-world/","title":"Hello World"}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://knot41.github.io.com/Use_Gpu/","path":"Use_Gpu/","title":"利用GPU加速计算"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>Hello World | Cinjay's Blog</title>
+<title>利用GPU加速计算 | Cinjay's Blog</title>
   
 
 
@@ -112,7 +118,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Quick-Start"><span class="nav-number">1.</span> <span class="nav-text">Quick Start</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Create-a-new-post"><span class="nav-number">1.1.</span> <span class="nav-text">Create a new post</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Run-server"><span class="nav-number">1.2.</span> <span class="nav-text">Run server</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Generate-static-files"><span class="nav-number">1.3.</span> <span class="nav-text">Generate static files</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Deploy-to-remote-sites"><span class="nav-number">1.4.</span> <span class="nav-text">Deploy to remote sites</span></a></li></ol></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%AF%B4%E6%98%8E"><span class="nav-number">1.</span> <span class="nav-text">说明</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%89%E8%A3%85NVIDIA%E9%A9%B1%E5%8A%A8"><span class="nav-number">1.1.</span> <span class="nav-text">安装NVIDIA驱动</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%89%E8%A3%85CUDA-ToolKit"><span class="nav-number">1.2.</span> <span class="nav-text">安装CUDA ToolKit</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%89%E8%A3%85PyTorch"><span class="nav-number">1.3.</span> <span class="nav-text">安装PyTorch</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%A3%80%E9%AA%8C%E5%AE%89%E8%A3%85"><span class="nav-number">2.</span> <span class="nav-text">检验安装</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -159,7 +165,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://knot41.github.io.com/hello-world/">
+    <link itemprop="mainEntityOfPage" href="http://knot41.github.io.com/Use_Gpu/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.jpg">
@@ -172,12 +178,12 @@
     </span>
 
     <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="Hello World | Cinjay's Blog">
+      <meta itemprop="name" content="利用GPU加速计算 | Cinjay's Blog">
       <meta itemprop="description" content="">
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          Hello World
+          利用GPU加速计算
         </h1>
 
         <div class="post-meta-container">
@@ -188,7 +194,7 @@
       </span>
       <span class="post-meta-item-text">发表于</span>
 
-      <time title="创建时间：2024-01-02 00:00:00" itemprop="dateCreated datePublished" datetime="2024-01-02T00:00:00+08:00">2024-01-02</time>
+      <time title="创建时间：2025-02-05 00:00:00" itemprop="dateCreated datePublished" datetime="2025-02-05T00:00:00+08:00">2025-02-05</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -196,11 +202,7 @@
       </span>
       <span class="post-meta-item-text">分类于</span>
         <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Sports/" itemprop="url" rel="index"><span itemprop="name">Sports</span></a>
-        </span>
-          ，
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Sports/bask/" itemprop="url" rel="index"><span itemprop="name">bask</span></a>
+          <a href="/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index"><span itemprop="name">学习笔记</span></a>
         </span>
     </span>
 
@@ -213,21 +215,42 @@
     
     
     
-    <div class="post-body" itemprop="articleBody"><p>Welcome to <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a target="_blank" rel="noopener" href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a target="_blank" rel="noopener" href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
+    <div class="post-body" itemprop="articleBody"><p>以Ubuntu系统为例，介绍如何利用GPU加速计算，以进行深度学习、本地运行大模型等高性能任务。</p>
 <span id="more"></span>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
 
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+<p>我的本地配置参考如下：</p>
+<ul>
+<li>Ubuntu 22.04</li>
+<li>NVIDIA GEFORCE RTX 4060 Laptop</li>
+</ul>
+<p>使用的依赖版本如下：</p>
+<ul>
+<li>nvidia-driver-550</li>
+<li>CUDA VERSION：12.4</li>
+<li>PyTorch Build: Stable(2.6.0)</li>
+</ul>
+<h1 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h1><p>要使用英伟达显卡的GPU，首先要确保安装<strong>英伟达驱动</strong>，该驱动能够让操作系统识别并使用英伟达显卡，例如用于图形渲染等功能。然后，需要安装<strong>CUDA工具包</strong>。CUDA允许PyTorch直接与显卡的GPU交互，并让你能够在GPU上执行并行计算任务。没有CUDA，PyTorch就无法利用GPU进行加速。至于<strong>Pytorch</strong>，可理解为是一个流行的深度学习框架，广泛用于训练和推理神经网络。它支持在CPU和GPU上运行。为了利用GPU加速计算，PyTorch需要CUDA来进行GPU上的计算。</p>
+<p>但在安装这三者依赖的时候，我们要注意对应版本的支持关系，可在各自官网上查看。以我使用的依赖版本为例，我是4060系列笔记本类的英伟达显卡。它支持550的英伟达驱动，该驱动支持12.4的CUDA工作包版本，而恰好在Linux系统下，PyTorch有支持此CUDA工作包12.4版本的稳定框架。三种对应版本如果支持不上，不但使用不了GPU，而且本地环境会比较混乱，所以找到一套对应关系<strong>十分重要</strong>。</p>
+<h2 id="安装NVIDIA驱动"><a href="#安装NVIDIA驱动" class="headerlink" title="安装NVIDIA驱动"></a>安装NVIDIA驱动</h2><p>可以从<a target="_blank" rel="noopener" href="https://www.nvidia.cn/geforce/drivers/">NVIDIA驱动</a>官网手动下载，限定自己NVIDIA显卡的型号，可以查询到对应显卡支持的NVIDIA驱动。</p>
+<p>这里介绍一种更方便的图形化的安装方式，打开Ubuntu系统的Software &amp; Updates，其中的Additonal Drivers选项就是英伟达的显卡驱动。一般可以直接选择带有“tested”选项的驱动，然后安装重启系统即可。</p>
+<img src="/images/Ubuntu/Additional_Drivers.png" alt="Addtional Drivers" width="1000">
 
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+<h2 id="安装CUDA-ToolKit"><a href="#安装CUDA-ToolKit" class="headerlink" title="安装CUDA ToolKit"></a>安装CUDA ToolKit</h2><p>首先确保自己安装了英伟达驱动，可在终端输入以下命令：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nvidia-smi</span><br></pre></td></tr></table></figure>
+<p>如果安装成功，你可以看到自己显卡驱动的版本，并且能够看到支持的CUDA的最大版本以及显卡的具体配置等。</p>
+<img src="/images/Ubuntu/nvidia-smi.png" alt="nvidia-smi" width="1000">
 
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+<p>然后进入<a target="_blank" rel="noopener" href="https://developer.nvidia.com/cuda-toolkit">CUDA Toolkit</a>官网，按照自己需要安装的版本号，选择对应的操作系统及相关内容就能下载了。</p>
+<img src="/images/Ubuntu/CUDA_Toolkit.png" alt="CUDA_Toolkit" width="1000">
 
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
+<p>这里需要注意的是最后在终端执行下载时，会选择需要安装的内容，这里就不再赘述了。</p>
+<h2 id="安装PyTorch"><a href="#安装PyTorch" class="headerlink" title="安装PyTorch"></a>安装PyTorch</h2><p>进入<a target="_blank" rel="noopener" href="https://pytorch.org/get-started/locally/">PyTorch下载</a>官网，也是选择相应的前提条件后就能够进行下载了。</p>
+<img src="/images/Ubuntu/PyTorch.png" alt="PyTorch" width="1000">
 
+<h1 id="检验安装"><a href="#检验安装" class="headerlink" title="检验安装"></a>检验安装</h1><p>三者依赖安装完后，可以在终端输入一下命令进行测试是否安装成功:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python3 -c <span class="string">&quot;import torch; print(torch.__version__); print(torch.cuda.is_available())&quot;</span></span><br></pre></td></tr></table></figure>
+<p>如果安装成功，可以看到终端输出PyTorch和CUDA Toolkit的版本，并且返回“True”</p>
+<img src="/images/Ubuntu/test.png" alt="test" width="1000">
     </div>
 
     
@@ -244,7 +267,7 @@
   </li>
   <li class="post-copyright-link">
       <strong>本文链接：</strong>
-      <a href="http://knot41.github.io.com/hello-world/" title="Hello World">http://knot41.github.io.com/hello-world/</a>
+      <a href="http://knot41.github.io.com/Use_Gpu/" title="利用GPU加速计算">http://knot41.github.io.com/Use_Gpu/</a>
   </li>
   <li class="post-copyright-license">
       <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
@@ -255,15 +278,6 @@
 
         
 
-          <div class="post-nav">
-            <div class="post-nav-item">
-            </div>
-            <div class="post-nav-item">
-                <a href="/Ubuntu_Use_Gpu/" rel="next" title="在Ubuntu系统下，利用GPU加速计算">
-                  在Ubuntu系统下，利用GPU加速计算 <i class="fa fa-angle-right"></i>
-                </a>
-            </div>
-          </div>
     </footer>
   </article>
 </div>
