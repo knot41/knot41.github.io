@@ -20,32 +20,30 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"knot41.github.io.com","root":"/","images":"/images","scheme":"Gemini","darkmode":true,"version":"8.22.0","exturl":false,"sidebar":{"position":"left","width_expanded":300,"width_dual_column":220,"display":"always","padding":18,"offset":12},"hljswrap":true,"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":true,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
 
-    <meta name="description" content="以Ubuntu系统为例，介绍如何利用GPU加速计算，以进行深度学习、本地运行大模型等高性能任务。">
+    <meta name="description" content="最近看到很多开源项目会在 GitHub 上提供 Docker 支持，在试着使用的过程，我感受到docker工具的魅力。所以记录下Docker Desktop的安装并给出一些可用的配置。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="利用GPU加速计算">
-<meta property="og:url" content="http://knot41.github.io.com/Use_Gpu/index.html">
+<meta property="og:title" content="安装Docker Desktop">
+<meta property="og:url" content="http://knot41.github.io.com/Docker_Desktop/index.html">
 <meta property="og:site_name" content="Cinjay&#39;s Blog">
-<meta property="og:description" content="以Ubuntu系统为例，介绍如何利用GPU加速计算，以进行深度学习、本地运行大模型等高性能任务。">
+<meta property="og:description" content="最近看到很多开源项目会在 GitHub 上提供 Docker 支持，在试着使用的过程，我感受到docker工具的魅力。所以记录下Docker Desktop的安装并给出一些可用的配置。">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="http://knot41.github.io.com/images/Ubuntu/Additional_Drivers.png">
-<meta property="og:image" content="http://knot41.github.io.com/images/Ubuntu/nvidia-smi.png">
-<meta property="og:image" content="http://knot41.github.io.com/images/Ubuntu/CUDA_Toolkit.png">
-<meta property="og:image" content="http://knot41.github.io.com/images/Ubuntu/PyTorch.png">
-<meta property="og:image" content="http://knot41.github.io.com/images/Ubuntu/test.png">
-<meta property="article:published_time" content="2025-02-04T16:00:00.000Z">
-<meta property="article:modified_time" content="2025-02-13T03:42:33.497Z">
+<meta property="og:image" content="http://knot41.github.io.com/images/Ubuntu/Docker_Desktop.png">
+<meta property="og:image" content="http://knot41.github.io.com/images/Ubuntu/docker_proxy.png">
+<meta property="og:image" content="http://knot41.github.io.com/images/Ubuntu/docker_mirros.png">
+<meta property="article:published_time" content="2025-02-06T16:00:00.000Z">
+<meta property="article:modified_time" content="2025-02-17T08:23:54.513Z">
 <meta property="article:author" content="Cinjay">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://knot41.github.io.com/images/Ubuntu/Additional_Drivers.png">
+<meta name="twitter:image" content="http://knot41.github.io.com/images/Ubuntu/Docker_Desktop.png">
 
 
-<link rel="canonical" href="http://knot41.github.io.com/Use_Gpu/">
+<link rel="canonical" href="http://knot41.github.io.com/Docker_Desktop/">
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://knot41.github.io.com/Use_Gpu/","path":"Use_Gpu/","title":"利用GPU加速计算"}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://knot41.github.io.com/Docker_Desktop/","path":"Docker_Desktop/","title":"安装Docker Desktop"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>利用GPU加速计算 | Cinjay's Blog</title>
+<title>安装Docker Desktop | Cinjay's Blog</title>
   
 
 
@@ -118,7 +116,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%AF%B4%E6%98%8E"><span class="nav-number">1.</span> <span class="nav-text">说明</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%89%E8%A3%85NVIDIA%E9%A9%B1%E5%8A%A8"><span class="nav-number">1.1.</span> <span class="nav-text">安装NVIDIA驱动</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%89%E8%A3%85CUDA-ToolKit"><span class="nav-number">1.2.</span> <span class="nav-text">安装CUDA ToolKit</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%89%E8%A3%85PyTorch"><span class="nav-number">1.3.</span> <span class="nav-text">安装PyTorch</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%A3%80%E9%AA%8C%E5%AE%89%E8%A3%85"><span class="nav-number">2.</span> <span class="nav-text">检验安装</span></a></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%AF%B4%E6%98%8E"><span class="nav-number">1.</span> <span class="nav-text">说明</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%B8%8B%E8%BD%BD"><span class="nav-number">2.</span> <span class="nav-text">下载</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AE%BE%E7%BD%AEdocker%E7%9A%84%E8%BD%AF%E4%BB%B6%E5%8C%85%E5%AD%98%E5%82%A8%E5%BA%93"><span class="nav-number">2.1.</span> <span class="nav-text">设置docker的软件包存储库</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%8B%E8%BD%BD%E6%9C%80%E6%96%B0%E7%9A%84DEB%E8%BD%AF%E4%BB%B6%E5%8C%85"><span class="nav-number">2.2.</span> <span class="nav-text">下载最新的DEB软件包</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8apt%E5%AE%89%E8%A3%85%E8%BD%AF%E4%BB%B6%E5%8C%85"><span class="nav-number">2.3.</span> <span class="nav-text">使用apt安装软件包</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%A3%80%E9%AA%8C%E5%AE%89%E8%A3%85"><span class="nav-number">3.</span> <span class="nav-text">检验安装</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%AE%BE%E7%BD%AE%E4%BB%A3%E7%90%86%E5%92%8C%E9%95%9C%E5%83%8F%E6%BA%90"><span class="nav-number">4.</span> <span class="nav-text">设置代理和镜像源</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BB%A3%E7%90%86%E8%AE%BE%E7%BD%AE"><span class="nav-number">4.1.</span> <span class="nav-text">代理设置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%95%9C%E5%83%8F%E6%BA%90%E8%AE%BE%E7%BD%AE"><span class="nav-number">4.2.</span> <span class="nav-text">镜像源设置</span></a></li></ol></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -165,7 +163,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://knot41.github.io.com/Use_Gpu/">
+    <link itemprop="mainEntityOfPage" href="http://knot41.github.io.com/Docker_Desktop/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.jpg">
@@ -178,12 +176,12 @@
     </span>
 
     <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="利用GPU加速计算 | Cinjay's Blog">
+      <meta itemprop="name" content="安装Docker Desktop | Cinjay's Blog">
       <meta itemprop="description" content="">
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          利用GPU加速计算
+          安装Docker Desktop
         </h1>
 
         <div class="post-meta-container">
@@ -194,7 +192,7 @@
       </span>
       <span class="post-meta-item-text">发表于</span>
 
-      <time title="创建时间：2025-02-05 00:00:00" itemprop="dateCreated datePublished" datetime="2025-02-05T00:00:00+08:00">2025-02-05</time>
+      <time title="创建时间：2025-02-07 00:00:00" itemprop="dateCreated datePublished" datetime="2025-02-07T00:00:00+08:00">2025-02-07</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -215,42 +213,35 @@
     
     
     
-    <div class="post-body" itemprop="articleBody"><p>以Ubuntu系统为例，介绍如何利用GPU加速计算，以进行深度学习、本地运行大模型等高性能任务。</p>
+    <div class="post-body" itemprop="articleBody"><p>最近看到很多开源项目会在 GitHub 上提供 Docker 支持，在试着使用的过程，我感受到docker工具的魅力。所以记录下Docker Desktop的安装并给出一些可用的配置。</p>
 <span id="more"></span>
 
-<p>我的本地配置参考如下：</p>
+<h1 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h1><p>Docker Desktop 是一个开发者工具，主要用于在本地机器上运行和管理 Docker 容器。其内部包含了 Docker Engine 和 Docker CLI，还提供了 Kubernetes 集群支持，方便开发人员在本地进行容器编排与管理。简而言之，它让开发人员可以在本地环境中便捷地运行 Docker 容器，进行应用开发和测试。</p>
+<h1 id="下载"><a href="#下载" class="headerlink" title="下载"></a>下载</h1><p>我本地的操作系统是Ubuntu系统，如果是其他系统，可前往<a target="_blank" rel="noopener" href="https://docs.docker.com/desktop/">Docker Desktop官网</a>自行安装。</p>
+<p><em>TIP</em>: Docker Desktop已经自带了Docker Engine，如果本地有Docker Engine，一定要注意两者不能冲突！！！</p>
+<h2 id="设置docker的软件包存储库"><a href="#设置docker的软件包存储库" class="headerlink" title="设置docker的软件包存储库"></a>设置docker的软件包存储库</h2><p>在终端输入以下命令：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Add Docker&#x27;s official GPG key:</span></span><br><span class="line"><span class="built_in">sudo</span> apt-get update</span><br><span class="line"><span class="built_in">sudo</span> apt-get install ca-certificates curl</span><br><span class="line"><span class="built_in">sudo</span> install -m 0755 -d /etc/apt/keyrings</span><br><span class="line"><span class="built_in">sudo</span> curl -fsSL https://download.docker.com/linux/ubuntu/gpg -o /etc/apt/keyrings/docker.asc</span><br><span class="line"><span class="built_in">sudo</span> <span class="built_in">chmod</span> a+r /etc/apt/keyrings/docker.asc</span><br><span class="line"></span><br><span class="line"><span class="comment"># Add the repository to Apt sources:</span></span><br><span class="line"><span class="built_in">echo</span> \</span><br><span class="line">  <span class="string">&quot;deb [arch=<span class="subst">$(dpkg --print-architecture)</span> signed-by=/etc/apt/keyrings/docker.asc] https://download.docker.com/linux/ubuntu \</span></span><br><span class="line"><span class="string">  <span class="subst">$(. /etc/os-release &amp;&amp; echo <span class="string">&quot;<span class="variable">$&#123;UBUNTU_CODENAME:-<span class="variable">$VERSION_CODENAME</span>&#125;</span>&quot;</span>)</span> stable&quot;</span> | \</span><br><span class="line">  <span class="built_in">sudo</span> <span class="built_in">tee</span> /etc/apt/sources.list.d/docker.list &gt; /dev/null</span><br><span class="line"><span class="built_in">sudo</span> apt-get update</span><br></pre></td></tr></table></figure>
+
+<h2 id="下载最新的DEB软件包"><a href="#下载最新的DEB软件包" class="headerlink" title="下载最新的DEB软件包"></a>下载最新的DEB软件包</h2><p>可前往<a target="_blank" rel="noopener" href="https://docs.docker.com/desktop/release-notes/">Docker Desktop发行说明</a>进行下载。</p>
+<h2 id="使用apt安装软件包"><a href="#使用apt安装软件包" class="headerlink" title="使用apt安装软件包"></a>使用apt安装软件包</h2><p>在终端输入以下命令：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">sudo</span> apt-get update</span><br><span class="line"><span class="built_in">sudo</span> apt-get install ./docker-desktop-amd64.deb</span><br></pre></td></tr></table></figure>
+
+<h1 id="检验安装"><a href="#检验安装" class="headerlink" title="检验安装"></a>检验安装</h1><p>在执行完下载步骤后，可在终端得到和我类似的内容。</p>
+<img src="/images/Ubuntu/Docker_Desktop.png" alt="Docker Desktop" width="1000">
+
+<h1 id="设置代理和镜像源"><a href="#设置代理和镜像源" class="headerlink" title="设置代理和镜像源"></a>设置代理和镜像源</h1><p>安装好后，往往会遇到网络无法访问的问题。于是就需要设置docker的代理和镜像源了。</p>
 <ul>
-<li>Ubuntu 22.04</li>
-<li>NVIDIA GEFORCE RTX 4060 Laptop</li>
+<li>代理确保 Docker 能通过公司网络或墙外网络。</li>
+<li>镜像源确保 Docker 镜像能够快速拉取，避免 Docker Hub 访问缓慢。</li>
 </ul>
-<p>使用的依赖版本如下：</p>
-<ul>
-<li>nvidia-driver-550</li>
-<li>CUDA VERSION：12.4</li>
-<li>PyTorch Build: Stable(2.6.0)</li>
-</ul>
-<h1 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h1><p>要使用英伟达显卡的GPU，首先要确保安装<strong>英伟达驱动</strong>，该驱动能够让操作系统识别并使用英伟达显卡，例如用于图形渲染等功能。然后，需要安装<strong>CUDA工具包</strong>。CUDA允许PyTorch直接与显卡的GPU交互，并让你能够在GPU上执行并行计算任务。没有CUDA，PyTorch就无法利用GPU进行加速。至于<strong>Pytorch</strong>，可理解为是一个流行的深度学习框架，广泛用于训练和推理神经网络。它支持在CPU和GPU上运行。为了利用GPU加速计算，PyTorch需要CUDA来进行GPU上的计算。</p>
-<p>但在安装这三者依赖的时候，我们要注意对应版本的支持关系，可在各自官网上查看。以我使用的依赖版本为例，我是4060系列笔记本类的英伟达显卡。它支持550的英伟达驱动，该驱动支持12.4的CUDA工作包版本，而恰好在Linux系统下，PyTorch有支持此CUDA工作包12.4版本的稳定框架。三种对应版本如果支持不上，不但使用不了GPU，而且本地环境会比较混乱，所以找到一套对应关系<strong>十分重要</strong>。</p>
-<h2 id="安装NVIDIA驱动"><a href="#安装NVIDIA驱动" class="headerlink" title="安装NVIDIA驱动"></a>安装NVIDIA驱动</h2><p>可以从<a target="_blank" rel="noopener" href="https://www.nvidia.cn/geforce/drivers/">NVIDIA驱动</a>官网手动下载，限定自己NVIDIA显卡的型号，可以查询到对应显卡支持的NVIDIA驱动。</p>
-<p>这里介绍一种更方便的图形化的安装方式，打开Ubuntu系统的Software &amp; Updates，其中的Additonal Drivers选项就是英伟达的显卡驱动。一般可以直接选择带有“tested”选项的驱动，然后安装重启系统即可。</p>
-<img src="/images/Ubuntu/Additional_Drivers.png" alt="Addtional Drivers" width="1000">
+<h2 id="代理设置"><a href="#代理设置" class="headerlink" title="代理设置"></a>代理设置</h2><img src="/images/Ubuntu/docker_proxy.png" alt="docker_proxy" width="1000">
 
-<h2 id="安装CUDA-ToolKit"><a href="#安装CUDA-ToolKit" class="headerlink" title="安装CUDA ToolKit"></a>安装CUDA ToolKit</h2><p>首先确保自己安装了英伟达驱动，可在终端输入以下命令：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nvidia-smi</span><br></pre></td></tr></table></figure>
-<p>如果安装成功，你可以看到自己显卡驱动的版本，并且能够看到支持的CUDA的最大版本以及显卡的具体配置等。</p>
-<img src="/images/Ubuntu/nvidia-smi.png" alt="nvidia-smi" width="1000">
+<p>端口号要设置为自己代理客户端运行的端口号。</p>
+<h2 id="镜像源设置"><a href="#镜像源设置" class="headerlink" title="镜像源设置"></a>镜像源设置</h2><p>这些镜像源目前是可用的，后续或许也会寄。</p>
+<img src="/images/Ubuntu/docker_mirros.png" alt="docker_mirros" width="1000">
 
-<p>然后进入<a target="_blank" rel="noopener" href="https://developer.nvidia.com/cuda-toolkit">CUDA Toolkit</a>官网，按照自己需要安装的版本号，选择对应的操作系统及相关内容就能下载了。</p>
-<img src="/images/Ubuntu/CUDA_Toolkit.png" alt="CUDA_Toolkit" width="1000">
+<p>设置好后，如果可以 sign in 或者可以 pull hello-world 镜像那就说明没有问题啦。</p>
 
-<p>这里需要注意的是最后在终端执行下载时，会选择需要安装的内容，这里就不再赘述了。</p>
-<h2 id="安装PyTorch"><a href="#安装PyTorch" class="headerlink" title="安装PyTorch"></a>安装PyTorch</h2><p>进入<a target="_blank" rel="noopener" href="https://pytorch.org/get-started/locally/">PyTorch下载</a>官网，也是选择相应的前提条件后就能够进行下载了。</p>
-<img src="/images/Ubuntu/PyTorch.png" alt="PyTorch" width="1000">
-
-<h1 id="检验安装"><a href="#检验安装" class="headerlink" title="检验安装"></a>检验安装</h1><p>三者依赖安装完后，可以在终端输入一下命令进行测试是否安装成功:</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python3 -c <span class="string">&quot;import torch; print(torch.__version__); print(torch.cuda.is_available())&quot;</span></span><br></pre></td></tr></table></figure>
-<p>如果安装成功，可以看到终端输出PyTorch和CUDA Toolkit的版本，并且返回“True”</p>
-<img src="/images/Ubuntu/test.png" alt="test" width="1000">
     </div>
 
     
@@ -267,7 +258,7 @@
   </li>
   <li class="post-copyright-link">
       <strong>本文链接：</strong>
-      <a href="http://knot41.github.io.com/Use_Gpu/" title="利用GPU加速计算">http://knot41.github.io.com/Use_Gpu/</a>
+      <a href="http://knot41.github.io.com/Docker_Desktop/" title="安装Docker Desktop">http://knot41.github.io.com/Docker_Desktop/</a>
   </li>
   <li class="post-copyright-license">
       <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
@@ -280,11 +271,11 @@
 
           <div class="post-nav">
             <div class="post-nav-item">
+                <a href="/Use_Gpu/" rel="prev" title="利用GPU加速计算">
+                  <i class="fa fa-angle-left"></i> 利用GPU加速计算
+                </a>
             </div>
             <div class="post-nav-item">
-                <a href="/Docker_Desktop/" rel="next" title="安装Docker Desktop">
-                  安装Docker Desktop <i class="fa fa-angle-right"></i>
-                </a>
             </div>
           </div>
     </footer>
