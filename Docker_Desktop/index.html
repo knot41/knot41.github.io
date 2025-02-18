@@ -20,18 +20,18 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"knot41.github.io.com","root":"/","images":"/images","scheme":"Gemini","darkmode":true,"version":"8.22.0","exturl":false,"sidebar":{"position":"left","width_expanded":300,"width_dual_column":220,"display":"always","padding":18,"offset":12},"hljswrap":true,"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":true,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
 
-    <meta name="description" content="最近看到很多开源项目会在 GitHub 上提供 Docker 支持，在试着使用的过程，我感受到docker工具的魅力。所以记录下Docker Desktop的安装并给出一些可用的配置。">
+    <meta name="description" content="最近看到很多开源项目会在 GitHub 上提供 Docker 支持，在试着使用的过程，我感受到docker工具的魅力。所以记录下Docker Desktop的安装并给出一些可用的配置。(但其实我后续还是使用了docker engine)">
 <meta property="og:type" content="article">
 <meta property="og:title" content="安装Docker Desktop">
 <meta property="og:url" content="http://knot41.github.io.com/Docker_Desktop/index.html">
 <meta property="og:site_name" content="Cinjay&#39;s Blog">
-<meta property="og:description" content="最近看到很多开源项目会在 GitHub 上提供 Docker 支持，在试着使用的过程，我感受到docker工具的魅力。所以记录下Docker Desktop的安装并给出一些可用的配置。">
+<meta property="og:description" content="最近看到很多开源项目会在 GitHub 上提供 Docker 支持，在试着使用的过程，我感受到docker工具的魅力。所以记录下Docker Desktop的安装并给出一些可用的配置。(但其实我后续还是使用了docker engine)">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://knot41.github.io.com/images/Ubuntu/Docker_Desktop.png">
 <meta property="og:image" content="http://knot41.github.io.com/images/Ubuntu/docker_proxy.png">
 <meta property="og:image" content="http://knot41.github.io.com/images/Ubuntu/docker_mirros.png">
 <meta property="article:published_time" content="2025-02-06T16:00:00.000Z">
-<meta property="article:modified_time" content="2025-02-17T08:23:54.513Z">
+<meta property="article:modified_time" content="2025-02-18T13:21:49.792Z">
 <meta property="article:author" content="Cinjay">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="http://knot41.github.io.com/images/Ubuntu/Docker_Desktop.png">
@@ -116,7 +116,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%AF%B4%E6%98%8E"><span class="nav-number">1.</span> <span class="nav-text">说明</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%B8%8B%E8%BD%BD"><span class="nav-number">2.</span> <span class="nav-text">下载</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AE%BE%E7%BD%AEdocker%E7%9A%84%E8%BD%AF%E4%BB%B6%E5%8C%85%E5%AD%98%E5%82%A8%E5%BA%93"><span class="nav-number">2.1.</span> <span class="nav-text">设置docker的软件包存储库</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%8B%E8%BD%BD%E6%9C%80%E6%96%B0%E7%9A%84DEB%E8%BD%AF%E4%BB%B6%E5%8C%85"><span class="nav-number">2.2.</span> <span class="nav-text">下载最新的DEB软件包</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8apt%E5%AE%89%E8%A3%85%E8%BD%AF%E4%BB%B6%E5%8C%85"><span class="nav-number">2.3.</span> <span class="nav-text">使用apt安装软件包</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%A3%80%E9%AA%8C%E5%AE%89%E8%A3%85"><span class="nav-number">3.</span> <span class="nav-text">检验安装</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%AE%BE%E7%BD%AE%E4%BB%A3%E7%90%86%E5%92%8C%E9%95%9C%E5%83%8F%E6%BA%90"><span class="nav-number">4.</span> <span class="nav-text">设置代理和镜像源</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BB%A3%E7%90%86%E8%AE%BE%E7%BD%AE"><span class="nav-number">4.1.</span> <span class="nav-text">代理设置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%95%9C%E5%83%8F%E6%BA%90%E8%AE%BE%E7%BD%AE"><span class="nav-number">4.2.</span> <span class="nav-text">镜像源设置</span></a></li></ol></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%AF%B4%E6%98%8E"><span class="nav-number">1.</span> <span class="nav-text">说明</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%B8%8B%E8%BD%BD"><span class="nav-number">2.</span> <span class="nav-text">下载</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AE%BE%E7%BD%AEdocker%E7%9A%84%E8%BD%AF%E4%BB%B6%E5%8C%85%E5%AD%98%E5%82%A8%E5%BA%93"><span class="nav-number">2.1.</span> <span class="nav-text">设置docker的软件包存储库</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%8B%E8%BD%BD%E6%9C%80%E6%96%B0%E7%9A%84DEB%E8%BD%AF%E4%BB%B6%E5%8C%85"><span class="nav-number">2.2.</span> <span class="nav-text">下载最新的DEB软件包</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8apt%E5%AE%89%E8%A3%85%E8%BD%AF%E4%BB%B6%E5%8C%85"><span class="nav-number">2.3.</span> <span class="nav-text">使用apt安装软件包</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%A3%80%E9%AA%8C%E5%AE%89%E8%A3%85"><span class="nav-number">3.</span> <span class="nav-text">检验安装</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%AE%BE%E7%BD%AE%E4%BB%A3%E7%90%86%E5%92%8C%E9%95%9C%E5%83%8F%E6%BA%90"><span class="nav-number">4.</span> <span class="nav-text">设置代理和镜像源</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BB%A3%E7%90%86%E8%AE%BE%E7%BD%AE"><span class="nav-number">4.1.</span> <span class="nav-text">代理设置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%95%9C%E5%83%8F%E6%BA%90%E8%AE%BE%E7%BD%AE"><span class="nav-number">4.2.</span> <span class="nav-text">镜像源设置</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%96%B0%E5%A2%9E%E7%9A%84%E7%BB%93%E6%9D%9F%E8%AF%AD"><span class="nav-number">5.</span> <span class="nav-text">新增的结束语</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -213,7 +213,7 @@
     
     
     
-    <div class="post-body" itemprop="articleBody"><p>最近看到很多开源项目会在 GitHub 上提供 Docker 支持，在试着使用的过程，我感受到docker工具的魅力。所以记录下Docker Desktop的安装并给出一些可用的配置。</p>
+    <div class="post-body" itemprop="articleBody"><p>最近看到很多开源项目会在 GitHub 上提供 Docker 支持，在试着使用的过程，我感受到docker工具的魅力。所以记录下Docker Desktop的安装并给出一些可用的配置。(但其实我后续还是使用了docker engine)</p>
 <span id="more"></span>
 
 <h1 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h1><p>Docker Desktop 是一个开发者工具，主要用于在本地机器上运行和管理 Docker 容器。其内部包含了 Docker Engine 和 Docker CLI，还提供了 Kubernetes 集群支持，方便开发人员在本地进行容器编排与管理。简而言之，它让开发人员可以在本地环境中便捷地运行 Docker 容器，进行应用开发和测试。</p>
@@ -241,6 +241,7 @@
 <img src="/images/Ubuntu/docker_mirros.png" alt="docker_mirros" width="1000">
 
 <p>设置好后，如果可以 sign in 或者可以 pull hello-world 镜像那就说明没有问题啦。</p>
+<h1 id="新增的结束语"><a href="#新增的结束语" class="headerlink" title="新增的结束语"></a>新增的结束语</h1><p><strong>在ubuntu系统下，发现想使用docker调用gpu跑open-webui时，docker守护进程一直会和英伟达docker包相互影响，总之就是一直适配不好，所以我更换为<a target="_blank" rel="noopener" href="https://docs.docker.com/engine/install/">docker engine</a>使用了，发现问题很好解决，但是永远失去了GUI😭。</strong></p>
 
     </div>
 
