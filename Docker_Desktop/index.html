@@ -18,20 +18,20 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha256-dABdfBfUoC8vJUBOwGVdm8L9qlMWaHTIfXt+7GnZCIo=" crossorigin="anonymous">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
 
-<script class="next-config" data-name="main" type="application/json">{"hostname":"knot41.github.io.com","root":"/","images":"/images","scheme":"Gemini","darkmode":true,"version":"8.22.0","exturl":false,"sidebar":{"position":"left","width_expanded":300,"width_dual_column":220,"display":"always","padding":18,"offset":12},"hljswrap":true,"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":true,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
+<script class="next-config" data-name="main" type="application/json">{"hostname":"knot41.github.io.com","root":"/","images":"/images","scheme":"Muse","darkmode":true,"version":"8.22.0","exturl":false,"sidebar":{"position":"left","width_expanded":300,"width_dual_column":220,"display":"always","padding":18,"offset":12},"hljswrap":true,"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":true,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
 
-    <meta name="description" content="摘要：最近看到很多开源项目会在 GitHub 上提供 Docker 支持，在试着使用的过程，我感受到docker工具的魅力。所以记录下Docker Desktop的安装并给出一些可用的配置。(但其实后续还是使用了docker engine)">
+    <meta name="description" content="最近看到很多开源项目会在 GitHub 上提供 Docker 支持，在试着使用的过程，我感受到docker工具的魅力。所以记录下Docker Desktop的安装并给出一些可用的配置。(但其实后续还是使用了docker engine)">
 <meta property="og:type" content="article">
 <meta property="og:title" content="安装Docker Desktop">
 <meta property="og:url" content="http://knot41.github.io.com/Docker_Desktop/index.html">
 <meta property="og:site_name" content="Cinjay&#39;s Blog">
-<meta property="og:description" content="摘要：最近看到很多开源项目会在 GitHub 上提供 Docker 支持，在试着使用的过程，我感受到docker工具的魅力。所以记录下Docker Desktop的安装并给出一些可用的配置。(但其实后续还是使用了docker engine)">
+<meta property="og:description" content="最近看到很多开源项目会在 GitHub 上提供 Docker 支持，在试着使用的过程，我感受到docker工具的魅力。所以记录下Docker Desktop的安装并给出一些可用的配置。(但其实后续还是使用了docker engine)">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://knot41.github.io.com/images/Ubuntu/Docker_Desktop.png">
 <meta property="og:image" content="http://knot41.github.io.com/images/Ubuntu/docker_proxy.png">
 <meta property="og:image" content="http://knot41.github.io.com/images/Ubuntu/docker_mirros.png">
 <meta property="article:published_time" content="2025-02-07T04:00:00.000Z">
-<meta property="article:modified_time" content="2025-02-26T13:51:30.360Z">
+<meta property="article:modified_time" content="2025-03-10T13:12:15.256Z">
 <meta property="article:author" content="Cinjay">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="http://knot41.github.io.com/images/Ubuntu/Docker_Desktop.png">
@@ -213,7 +213,7 @@
     
     
     
-    <div class="post-body" itemprop="articleBody"><p>摘要：最近看到很多开源项目会在 GitHub 上提供 Docker 支持，在试着使用的过程，我感受到docker工具的魅力。所以记录下Docker Desktop的安装并给出一些可用的配置。(但其实后续还是使用了docker engine)</p>
+    <div class="post-body" itemprop="articleBody"><p>最近看到很多开源项目会在 GitHub 上提供 Docker 支持，在试着使用的过程，我感受到docker工具的魅力。所以记录下Docker Desktop的安装并给出一些可用的配置。(但其实后续还是使用了docker engine)</p>
 <span id="more"></span>
 
 <h1 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h1><p>Docker Desktop 是一个开发者工具，主要用于在本地机器上运行和管理 Docker 容器。其内部包含了 Docker Engine 和 Docker CLI，还提供了 Kubernetes 集群支持，方便开发人员在本地进行容器编排与管理。简而言之，它让开发人员可以在本地环境中便捷地运行 Docker 容器，进行应用开发和测试。</p>
@@ -305,7 +305,7 @@
     </span>
     <span class="author" itemprop="copyrightHolder">Cinjay</span>
   </div>
-  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" rel="noopener" target="_blank">NexT.Muse</a> 强力驱动
   </div>
 
     </div>
